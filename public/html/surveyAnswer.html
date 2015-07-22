@@ -1,0 +1,36 @@
+<h1 class="text-center">{{question.name}}</h1>
+
+<form class="form-horizontal" ng-submit="submitAnswers()">
+  <div class="form-group">
+    <label class="col-xs-6 control-label">{{question.group}}?</label>
+    <div class="col-xs-6">
+      <input type="radio" ng-model="answer.group" name="group" value="Yes">Yes<br>
+      <input type="radio" ng-model="answer.group" name="group" value="female">No
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-xs-6 control-label">{{question.problem}}?</label>
+    <div class="col-xs-6">
+      <input type="radio" ng-model="answer.problem" name="problem" value="Yes">Yes<br>
+      <input type="radio" ng-model="answer.problem" name="problem" value="female">No
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-xs-6 control-label">{{question.solution}}?</label>
+    <div class="col-xs-6">
+      <input type="radio" ng-model="answer.solution" name="solution" value="Yes">Yes<br>
+      <input type="radio" ng-model="answer.solution" name="solution" value="female">No
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-xs-6 control-label">{{question.cost}}?</label>
+    <div class="col-xs-6">
+      <input type="radio" ng-model="answer.cost" name="cost" value="Yes">Yes<br>
+      <input type="radio" ng-model="answer.cost" name="cost" value="female">No
+    </div>
+  </div>
+  <div class="text-center">
+  <button class="btn btn-default" type="submit" ng-disabled="thankyou">Submit Questionaire</button>
+  </div>
+</form>
+<h3 class="text-center" ng-show="thankyou">Thank You!</h3>

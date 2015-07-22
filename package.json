@@ -1,0 +1,22 @@
+{
+  "name": "hypothesis",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "dev": "forever -w ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "~1.0.0",
+    "cookie-parser": "~1.0.1",
+    "debug": "~0.7.4",
+    "ejs": "~0.8.5",
+    "express": "~4.2.0",
+    "express-flash": "0.0.2",
+    "express-session": "^1.7.6",
+    "mongoose": "latest",
+    "morgan": "~1.0.0",
+    "parameterize": "0.0.7",
+    "static-favicon": "~1.0.0"
+  }
+}

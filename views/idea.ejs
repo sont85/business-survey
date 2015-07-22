@@ -1,0 +1,53 @@
+<% include header.ejs %>
+
+<h1 class="text-center">Business Hypothesis</h1>
+
+<div class="idea">
+  <div class="row">
+    <div class="col-sm-3 section-label">
+      Target Group
+    </div>
+    <div class="col-sm-9">
+      <div class="well section">
+        <%= idea.group %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-3 section-label">
+      The Problem
+    </div>
+    <div class="col-sm-9">
+      <div class="well section">
+        <%= idea.problem %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-3 section-label">
+      The proposed solution
+    </div>
+    <div class="col-sm-9">
+      <div class="well section">
+        <%= idea.solution %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-3 section-label">
+      Feasibility
+    </div>
+    <div class="col-sm-9">
+      <div class="well section">
+        <%= idea.cost %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="text-center">
+<button class="btn btn-default">Submit</button>
+</div>
+<% include footer.ejs %>
