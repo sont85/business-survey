@@ -37,7 +37,7 @@ app.service('httpService', function($http, $stateParams, $location) {
   this.submitQuestion = function(question) {
     $http.post('submitQuestion/', question)
     .success(function(response){
-      self.question = response
+      self.question = response;
       $location.url('/hypothesis/'+response.code);
     }).catch(function(err){
       console.log(err);
@@ -48,12 +48,10 @@ app.controller('MainCtrl', function($scope, httpService){
   httpService.getQuestion()
   .success(function(data){
     $scope.idea = data;
-    console.log(data);
   }).catch(function(err){
     console.log(err);
   });
   $scope.submitQuestion = function() {
-    console.log($scope.question);
     httpService.submitQuestion($scope.question);
   };
 
