@@ -32,7 +32,7 @@ router.get('/', function(req, res) {
   res.render('index', { });
 });
 
-router.post('/hypothesis', function(req, res) {
+router.post('/submitQuestion', function(req, res) {
 
   var titleCode = parameterize(req.body.name || req.body.group).substring(0,42);
   var idea = new Idea({
@@ -43,7 +43,7 @@ router.post('/hypothesis', function(req, res) {
     why: req.body.why,
     solution: req.body.solution,
     cost: req.body.cost,
-    code: ((new Date()).getTime()).toString() + "-" + titleCode
+    code: ((new Date()).getTime()).toString() + '-' + titleCode
   });
 
   idea.save(function(err, idea) {
@@ -52,7 +52,7 @@ router.post('/hypothesis', function(req, res) {
       return console.error(err);
     }
     req.flash('success', 'Hypothesis saved');
-    res.redirect('/hypothesis/' + idea.code);
+    res.json(idea);
   });
 
 });
@@ -63,6 +63,7 @@ router.get('/hypothesis/:code', function(req, res) {
       return console.error(err);
     }
     if (idea) {
+      console.log("############",idea)
       res.render('idea', { idea: idea });
     } else {
       res.redirect('/?i');
@@ -81,6 +82,7 @@ router.get('/getQuestion/:code', function(req, res) {
     }
   });
 });
+
 router.post('/submitAnswer/:code', function(req, res) {
   console.log(req);
   Idea.findOne({ code: req.params.code }, function(err, idea) {

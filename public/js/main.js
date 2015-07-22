@@ -8,6 +8,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
     templateUrl: '../html/surveyQuestion.html',
     controller: 'MainCtrl'
   })
+  .state('hypothesis', {
+    url: '/hypothesis/:code',
+    templateUrl: '../html/hypothesis.html',
+    controller: 'MainCtrl'
+  })
   .state('answers', {
     url: '/answer/:code',
     templateUrl: '../html/surveyAnswer.html',
@@ -15,22 +20,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
   });
 });
 
-app.service('httpService', function($http, $stateParams) {
+app.service('httpService', function($http, $stateParams, $location) {
   let self = this;
-  this.allSurveys = null;
-  this.postAnswer = function() {
-    $http.post('postAnswers')
-    .success(function(data){
-      console.log(data);
-    }).catch(function(err){
-      console.log(err);
-    });
-  };
+  this.question = null;
   this.getQuestion = function() {
     return $http.get('getQuestion/'+$stateParams.code);
   };
   this.postAnswer = function(answer) {
-    console.log(answer)
     $http.post('submitAnswer/'+$stateParams.code, answer)
     .success(function(response){
       console.log(response);
@@ -38,8 +34,28 @@ app.service('httpService', function($http, $stateParams) {
       console.log(err);
     });
   };
+  this.submitQuestion = function(question) {
+    $http.post('submitQuestion/', question)
+    .success(function(response){
+      self.question = response
+      $location.url('/hypothesis/'+response.code);
+    }).catch(function(err){
+      console.log(err);
+    });
+  };
 });
 app.controller('MainCtrl', function($scope, httpService){
+  httpService.getQuestion()
+  .success(function(data){
+    $scope.idea = data;
+    console.log(data);
+  }).catch(function(err){
+    console.log(err);
+  });
+  $scope.submitQuestion = function() {
+    console.log($scope.question);
+    httpService.submitQuestion($scope.question);
+  };
 
 });
 app.controller('AnswerCtrl', function($scope, httpService, $stateParams){
@@ -56,6 +72,5 @@ app.controller('AnswerCtrl', function($scope, httpService, $stateParams){
     httpService.postAnswer($scope.answer);
     $scope.answer = '';
     $scope.thankyou = !$scope.thankyou;
-
   };
 });

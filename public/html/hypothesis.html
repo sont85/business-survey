@@ -1,5 +1,3 @@
-<% include header.ejs %>
-
 <h1 class="text-center">Business Hypothesis</h1>
 
 <div class="idea">
@@ -9,7 +7,7 @@
     </div>
     <div class="col-sm-9">
       <div class="well section">
-        <%= idea.group %>
+        {{idea.group}}
       </div>
     </div>
   </div>
@@ -20,7 +18,7 @@
     </div>
     <div class="col-sm-9">
       <div class="well section">
-        <%= idea.problem %>
+        {{idea.problem}}
       </div>
     </div>
   </div>
@@ -31,7 +29,7 @@
     </div>
     <div class="col-sm-9">
       <div class="well section">
-        <%= idea.solution %>
+        {{idea.solution}}
       </div>
     </div>
   </div>
@@ -42,12 +40,8 @@
     </div>
     <div class="col-sm-9">
       <div class="well section">
-        <%= idea.cost %>
+        {{idea.cost}}
       </div>
     </div>
   </div>
 </div>
-<div class="text-center">
-<button class="btn btn-default">Submit</button>
-</div>
-<% include footer.ejs %>
